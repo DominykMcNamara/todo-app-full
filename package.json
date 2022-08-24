@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A simple todo-app",
   "main": "server.js",
+  "engines":{
+    "node": "18.4.0",
+    "npm": "8.13.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon server.js"

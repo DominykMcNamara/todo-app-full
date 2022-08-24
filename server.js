@@ -4,6 +4,7 @@ const cors = require("cors");
 const routes = require("./routes/index.routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
+const path = require("path");
 
 //SWAGGER CONFIGURATION
 const swaggerOptions = {
@@ -29,12 +30,21 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 const app = express();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 app.use("/api/v1/todos/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 // middleware
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/todos", routes.todos);
-port = process.env.PORT
-app.listen(port, () => console.log(`server is listening on port ${port}`));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+
+port = process.env.PORT;
+app.listen(port, () => console.log(`server is listening on port ${port}`));
