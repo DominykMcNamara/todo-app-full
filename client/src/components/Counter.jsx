@@ -13,6 +13,9 @@ export const Counter = (props) => {
     const fetchData = async () => {
       try {
         const inCompletedTodos = await TodoApi.get("/completed");
+        if (!inCompletedTodos) {
+          return
+        }
         setNumberOfIncompletedTodos(
           inCompletedTodos.data.data.numberOfIncompletedTodos
         );
