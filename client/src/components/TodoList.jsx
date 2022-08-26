@@ -19,6 +19,9 @@ export const TodoList = (props) => {
     const fetchTodos = async () => {
       try {
         const todoList = await TodoApi.get("/");
+        if (!todoList) {
+          return
+        }
         setTodos(todoList.data.data.todos);
       } catch (err) {
         console.log(err);

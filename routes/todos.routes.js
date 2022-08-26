@@ -220,7 +220,6 @@ router.get("/:id", async (req, res) => {
  *          description: Todo could not be created.
  */
 router.post("/", async (req, res) => {
-  console.log(req.body);
   try {
     const newTodo = await db.query(
       "INSERT INTO todos (description) VALUES ($1) RETURNING *",
@@ -229,6 +228,7 @@ router.post("/", async (req, res) => {
     const numberOfIncompleteTodos = await db.query(
       "SELECT COUNT(*) FROM todos WHERE completed = false"
     );
+    console.log(newTodo)
     res.status(201).json({
       status: "success",
       data: {
