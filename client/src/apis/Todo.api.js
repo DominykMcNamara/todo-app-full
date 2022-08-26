@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: "http://toasty-brioche.herokuapp.com/"
+    baseURL: "http://toasty-brioche.herokuapp.com/api/v1/todos"
 })
