@@ -47,4 +47,4 @@ app.get("*", (req, res) => {
 });
 
 port = process.env.PORT;
-app.listen(port, 'https://toasty-brioche.herokuapp.com/', () => console.log(`server is listening on port ${port}`));
+app.listen(port, () => console.log(`server is listening on port ${port}`));
