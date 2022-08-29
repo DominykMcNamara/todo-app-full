@@ -47,4 +47,4 @@ app.get("*", (req, res) => {
 });
 
 port = process.env.PORT;
-app.listen(port, () => console.log(`server is listening on port ${port}`));
+app.listen(port, process.env.HOST, () => console.log(`server is listening on port ${port}`));
